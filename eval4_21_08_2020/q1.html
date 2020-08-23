@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+    <script>
+        function multiplication_table()
+        {
+            var r=prompt("Enter Number Of rows in a multiplication table...!");
+            var c=prompt("Enter Number of columns in a multiplication table...!");
+            op=""
+            for(var i=1;i<=r;i++)
+            {
+                op+="<tr>"
+                for(var j=1;j<=c;j++)
+                {
+                    op+="<td>"+j*i+"</td>"
+                }
+                op+="</tr>"
+            }
+            document.getElementById("prac").innerHTML=op
+        }
+    </script>
+</head>
+<body>
+    <input type="submit" id="mult" value="m" onclick="multiplication_table()">
+    <table id="prac" border="10px" style="border-style: solid;">
+
+    </table>
+</body>
+</html>

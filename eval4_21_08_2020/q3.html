@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index pages printer</title>
+    <style>
+        body{
+            background-color:yellow;
+        }
+    </style>
+    <script>
+        document.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                generatePageNumber()
+            }
+        });
+        var small=[]
+        function indexdetails()
+        {
+            var chapter=document.getElementById("title").value
+            var num= document.getElementById("page").value
+
+            if(chapter==""||num=="")
+            {
+                alert("Title Or page number is missing...!")
+            }
+            else{
+                small.push({ chap: chapter, num: num })
+
+                small = small.sort(function (a, b) {
+                    return parseInt(a.num) - parseInt(b.num);
+                })
+                var op = ""
+                for (var i = 0; i < small.length; i++) {
+                    op += "<tr><td>"+(i+1)+"</td><td>"
+                    var length = small[i].chap.length
+                    op += small[i].chap
+                    for (var j = 0; j < (75 - (length + small[i].num.length)); j++) {
+                        op += ". "
+                    }
+                    op += "</td><td>"+small[i].num + "</td></tr><br>"
+                }
+                document.getElementById("list").innerHTML = op
+                document.getElementById("title").value=""
+                document.getElementById("title").select()
+                document.getElementById("page").value=""
+            }
+            
+        }
+    </script>
+    
+</head>
+<body>
+    <h2 style="background-color:turquoise; font-size: larger;"><b>Enter tittle of chapter :</b></h2>
+    <input type="text" name="title" id="title">
+    <br>
+    <br>
+    <h2 style="background-color: turquoise; font-size: larger;"><b>Enter Page Number Of Title :</b>    </h2>
+    <input type="number" name="page" id="page" size="1000">
+    <br>
+    <br>
+    <input type="button" name="submit" id="submit" value="Generate_Details" onclick="indexdetails()" size="100">
+
+    <table style="table-layout: fixed;" id="list" >
+
+    </table>
+</body>
+</html>
